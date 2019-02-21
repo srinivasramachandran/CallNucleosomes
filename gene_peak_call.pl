@@ -2,13 +2,17 @@
 
 die "Usage: perl gene_peak_call.pl <WIG> <TSS> <OUT-FILE> <window>\n" if(!$ARGV[3]);
 
-BEGIN { push @INC, 'perl_library' }
+BEGIN { push @INC, '/vol2/home/srinivas/code/CallNucleosomes/perl_library' }
 use ngs;
 
 $tread = &ngs::readwig($ARGV[0]);
 %read  = %{$tread};
 
 $window=$ARGV[3];
+
+open(OUT,">$ARGV[2]") || die "$!\n";
+
+print STDERR "$window\n";
 
 # read TSSs
 open(NUC,$ARGV[1]) || die "PEAK $!\n";
@@ -35,12 +39,16 @@ while($i=<NUC>){
 	@starray = @{$star};
 	$tx = &peaks(\@starray,\@time);
 	@qarray=@{$tx};
-	print "track type=wiggle_0\nvariableStep  chrom=chr$chr\n";
+	print STDERR "$line $#qarray\n";
+	print OUT "track type=wiggle_0\nvariableStep  chrom=chr$chr\n";
 	for($k=0;$k<=$#qarray;$k++){
-		print "$qarray[$k] 45\n";
+		print OUT "$qarray[$k] 45\n";
 	}
 
 }
+close(OUT);
+close(NUC);
+
 sub smooth_array {
 	#open(RA,">ra") || die "$!\n";
 	#print STDERR "smooth start\n";

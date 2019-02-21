@@ -10,7 +10,7 @@ $max=$ARGV[3];
 
 open(LIST,$ARGV[0]) || die "INPUT $!\n";
 while(chomp($l=<LIST>)){
-	open(FILE,$l) || die "Pairs file: $l $!\n";
+	open(FILE,$l) || die "Bed file: $l $!\n";
 	while(chomp($line=<FILE>)){
 		$lno++;
 		@temp = split /[\ \s\n\t]+/, $line;
