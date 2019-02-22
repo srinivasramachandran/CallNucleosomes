@@ -1,4 +1,7 @@
-# hexasome
+# Call Nucleosomes
+
+[![DOI](https://zenodo.org/badge/77785061.svg)](https://zenodo.org/badge/latestdoi/77785061)
+
 Starting point - bed file
 1. Create a wig file from bed file, extending only ±30 bp from fragment center. I use 120-160 bp fragments to make this wig file. Usage:
   
