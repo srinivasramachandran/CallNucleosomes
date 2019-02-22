@@ -14,7 +14,9 @@ while(chomp($l=<LIST>)){
 	while(chomp($line=<FILE>)){
 		$lno++;
 		@temp = split /[\ \s\n\t]+/, $line;
-		$frag_length = $temp[3]-$temp[2];
+		print "0:$temp[0] 1:$temp[1] 2:$temp[2]\n";
+		$frag_length = $temp[2]-$temp[1];
+		print "$frag_length\n";
 		#Assuming 6 column bed file - change if different
 		if($#temp != 5){
 			print STDERR "Not regular BED line?\n$line\n";
